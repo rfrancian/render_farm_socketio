@@ -1,0 +1,208 @@
+#!/usr/bin/env node
+
+/**
+ * Module dependencies.
+ */
+const {spawn} = require('child_process');
+
+var app = require('../app');
+var debug = require('debug')('socketiodemo:server');
+var http = require('http');
+// const imageRender = require('../imageRender')
+
+
+var express = require('express');
+var router = express.Router();
+
+/* GET home page. */
+router.get('/', function(req, res, next) {
+  res.render('index', { title: 'Express' });
+});
+
+
+
+/**
+ * Get port from environment and store in Express.
+ */
+
+var port = normalizePort(process.env.PORT || '3000');
+app.set('port', port);
+
+/**
+ * Create HTTP server.
+ */
+
+var server = http.createServer(app);
+var io = require('socket.io')(server)
+
+/**
+ * Listen on provided port, on all network interfaces.
+ */
+
+server.listen(port);
+server.on('error', onError);
+server.on('listening', onListening);
+
+
+io.on('connection', function(socket){
+  socket.on('filename', function(msg1){
+    io.emit('node1Message', 'my important message: ' + msg1)
+    io.emit('node2Message', 'my important message: ' + msg1[2])
+    console.log('my important message: ' + msg1)
+    imageRender(msg1[0], msg1[1], msg1[2]);
+  });
+
+});
+
+
+
+/**
+ * Normalize a port into a number, string, or false.
+ */
+
+function normalizePort(val) {
+  var port = parseInt(val, 10);
+
+  if (isNaN(port)) {
+    // named pipe
+    return val;
+  }
+
+  if (port >= 0) {
+    // port number
+    return port;
+  }
+
+  return false;
+}
+
+/**
+ * Event listener for HTTP server "error" event.
+ */
+
+function onError(error) {
+  if (error.syscall !== 'listen') {
+    throw error;
+  }
+
+  var bind = typeof port === 'string'
+    ? 'Pipe ' + port
+    : 'Port ' + port;
+
+  // handle specific listen errors with friendly messages
+  switch (error.code) {
+    case 'EACCES':
+      console.error(bind + ' requires elevated privileges');
+      process.exit(1);
+      break;
+    case 'EADDRINUSE':
+      console.error(bind + ' is already in use');
+      process.exit(1);
+      break;
+    default:
+      throw error;
+  }
+}
+
+/**
+ * Event listener for HTTP server "listening" event.
+ */
+
+function onListening() {
+  var addr = server.address();
+  var bind = typeof addr === 'string'
+    ? 'pipe ' + addr
+    : 'port ' + addr.port;
+  debug('Listening on ' + bind);
+}
+
+
+
+
+function renderNode1(ScriptName, Filename, Samples, WorkerNode1, minX, maxX) {
+
+  console.log('here: ',ScriptName, Filename, Samples, WorkerNode1);
+  
+  const childProcessNode1 = spawn(ScriptName, [Filename, Samples, WorkerNode1, minX, maxX]);
+  
+      childProcessNode1.stdout.on('data', (data) => {
+          io.emit('node1Message', 'node 1: ' + data)
+          // console.log(`stdout: ${data}`);
+      });
+  
+  
+      childProcessNode1.stderr.on('data', (data) => {
+          io.emit('node1Message', 'node 1: ' + data)
+          console.log(`stderr: ${data}`);
+      });
+    
+  
+      childProcessNode1.on('close', (code) => {
+          io.emit('node1Message', 'node 1: ' + code)
+          console.log(`child process exited with code ${code}`);
+      });
+  
+    
+    console.log('### DONE');
+  }
+  
+  function renderNode2(ScriptName, Filename, Samples, WorkerNode2, minX, maxX) {
+
+    console.log('here: ',ScriptName, Filename, Samples, WorkerNode2);
+    
+    const childProcessNode2 = spawn(ScriptName, [Filename, Samples, WorkerNode2, minX, maxX]);
+    
+        childProcessNode2.stdout.on('data', (data) => {
+            io.emit('node2Message', 'node 2: ' + data)
+            // console.log(`stdout: ${data}`);
+        });
+    
+    
+        childProcessNode2.stderr.on('data', (data) => {
+            io.emit('node2Message', 'node 2: ' + data)
+            console.log(`stderr: ${data}`);
+        });
+      
+    
+        childProcessNode2.on('close', (code) => {
+            io.emit('node2Message', 'node 2: ' + code)
+            console.log(`child process exited with code ${code}`);
+        });
+    
+      
+      console.log('### DONE');
+    }
+    
+
+    async function imageRender(filename, samples, split) {
+
+      // var renderNode2 = require('./renderthisNode2');
+      // var renderNode1 = require('./renderthisNode1');
+      
+      // // username and IP address of
+      // worker nodes
+      const workerNode2 = 'rsf@192.168.86.36'
+      const workerNode1 = 'rsf@192.168.86.20'
+      
+      // individual scripts for each workerNode
+      const scriptnameNode1 = '/Volumes/blenderFiles/blenderScript_Node1'
+      const scriptnameNode2 = '/Volumes/blenderFiles/blenderScript_Node2'
+      
+      const minX_Node1 = 0.0;
+      const maxX_Node1 = split;
+      
+      const minX_Node2 = split;
+      const maxX_Node2 = 1.0;
+      
+      // test logs
+      console.log(workerNode2);
+      console.log(workerNode1);
+      console.log(filename);
+      console.log(samples);
+      
+      // render left and right sides of image
+      renderNode1(scriptnameNode1, filename, samples, workerNode1, minX_Node1, maxX_Node1);
+      renderNode2(scriptnameNode2, filename, samples, workerNode2, minX_Node2, maxX_Node2);
+      
+  }
+  

@@ -1,0 +1,100 @@
+<html>
+
+<head>
+  <title>Render Farm Manager v001</title>
+  <link rel="stylesheet" href="/stylesheets/style.css">
+
+  <title>Socket.IO chat</title>
+
+</head>
+
+<body>
+  <h1>Render farm v001</h1>
+  <p>Welcome to render farm</p>
+
+
+  <section class="container">
+    <form id="my-form">
+      <h1>Info</h1>
+
+      <div>
+        <label for="filename"> filename:</label>
+        <input type="text" value='/Volumes/blenderFiles/' id="filename">
+      </div>
+      <div>
+        <label for="jobid"> job id:</label>
+        <input type="text" value = '000' id="jobid">
+      </div>
+      <div>
+          <label for="samples"> samples:</label>
+          <input type="text" value = '4' id="samples">
+        </div>
+        <div>
+            <label for="split"> split:</label>
+            <input type="text" value = '0.4' id="split">
+          </div>
+
+      <div class="msg"></div>
+
+      <div>
+          <label for="Node1"> Node 1: </label>
+          <textarea id="Node1" rows='10' cols= '125'></textarea>
+      </div>
+      <div>
+          <label for="Node2"> Node 2:</label>
+          <textarea id="Node2" rows='10' cols= '125'></textarea>
+      </div>
+      <input class="btn" type="submit" value="Submit">
+    </form>
+
+    <ul id="users"></ul>
+
+
+  </section>
+  
+  <ul id='messages'></ul>
+
+<script src="/socket.io/socket.io.js"></script>
+<script>
+
+
+    var socket = io();
+
+    const myForm = document.querySelector('#my-form')
+    const filenameInput = document.querySelector('#filename')
+    const jobidInput = document.querySelector('#jobid')
+    const msg = document.querySelector('.msg')
+    const samplesInput = document.querySelector('#samples')
+    const splitInput = document.querySelector('#split')
+
+    const Node1Input = document.querySelector('#Node1')
+    const Node2Input = document.querySelector('#Node2')
+    
+
+
+    myForm.addEventListener('submit', onSubmit)
+
+    function onSubmit(e) {
+      e.preventDefault()
+      console.log(filenameInput.value)
+      socket.emit('filename', [filenameInput.value, samplesInput.value, splitInput.value])
+      socket.emit('samples', samplesInput.value)
+      socket.emit('split', splitInput.value)
+
+      msg.innerHTML = filenameInput.value
+      return false;
+    }
+
+    socket.on('node1Message', function(msg) {
+      Node1Input.value += msg + '' + '\n'
+    })
+    socket.on('node2Message', function(msg) {
+      Node2Input.value += msg + '' + '\n'
+    })
+
+
+</script>
+
+</body>
+
+</html>
