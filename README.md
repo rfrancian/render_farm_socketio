@@ -1,4 +1,5 @@
 #render_farm
+
 This is a render farm manager... in its early stages.
 At the moment it takes a blender file to render a still
 image split between two computers. The filename, number of
@@ -13,3 +14,5 @@ next steps:
 as the current renders are completed. This will eliminate the
 need to judge the relative speeds of the worker nodes. 
 2. Also, make it easy to add/remove computers to/from the pool.
+
+requires Nodejs, express, and socket.io
