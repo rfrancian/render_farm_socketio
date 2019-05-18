@@ -10,7 +10,7 @@ the stream of outputs from the two computers are sent to two
 text areas on the form. 
 
 next steps: 
-1. remove the split and hand out narrow strips to
+1. remove the split and hand out narrow strips to available computers
 as the current renders are completed. This will eliminate the
 need to judge the relative speeds of the worker nodes. 
 2. Also, make it easy to add/remove computers to/from the pool.
