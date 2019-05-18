@@ -47,9 +47,12 @@ server.on('listening', onListening);
 io.on('connection', function(socket){
   socket.on('filename', function(msg1){
     io.emit('node1Message', 'my important message: ' + msg1)
+    io.emit('node1Message', 'my important message: ' + msg1[3])
+
+    io.emit('node1Message', 'my important message: ' + msg1[4])
     io.emit('node2Message', 'my important message: ' + msg1[2])
     console.log('my important message: ' + msg1)
-    imageRender(msg1[0], msg1[1], msg1[2]);
+    imageRender(msg1[0], msg1[1], msg1[2], msg1[3], msg1[4]);
   });
 
 });
@@ -174,15 +177,15 @@ function renderNode1(ScriptName, Filename, Samples, WorkerNode1, minX, maxX) {
     }
     
 
-    async function imageRender(filename, samples, split) {
+    async function imageRender(filename, samples, split, workerNode1, workerNode2) {
 
       // var renderNode2 = require('./renderthisNode2');
       // var renderNode1 = require('./renderthisNode1');
       
       // // username and IP address of
       // worker nodes
-      const workerNode2 = 'rsf@192.168.86.36'
-      const workerNode1 = 'rsf@192.168.86.20'
+      // const workerNode2 = 'rsf@192.168.86.36'
+      // const workerNode1 = 'rsf@192.168.86.20'
       
       // individual scripts for each workerNode
       const scriptnameNode1 = '/Volumes/blenderFiles/blenderScript_Node1'

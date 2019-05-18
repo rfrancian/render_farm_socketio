@@ -21,6 +21,15 @@
         <label for="filename"> filename:</label>
         <input type="text" value='/Volumes/blenderFiles/' id="filename">
       </div>
+      
+      <div>
+          <label for="workerNode1"> workerNode1 :</label>
+          <input type="text" value = 'rsf@192.168.86.20' id="workerNode1">
+      </div>      
+      <div>
+          <label for="workerNode2"> workerNode2 :</label>
+          <input type="text" value = 'rsf@192.168.86.36' id="workerNode2">
+      </div>     
       <div>
         <label for="jobid"> job id:</label>
         <input type="text" value = '000' id="jobid">
@@ -28,11 +37,11 @@
       <div>
           <label for="samples"> samples:</label>
           <input type="text" value = '4' id="samples">
-        </div>
-        <div>
-            <label for="split"> split:</label>
-            <input type="text" value = '0.4' id="split">
-          </div>
+      </div>
+      <div>
+          <label for="split"> split:</label>
+          <input type="text" value = '0.4' id="split">
+      </div>
 
       <div class="msg"></div>
 
@@ -70,6 +79,8 @@
     const Node1Input = document.querySelector('#Node1')
     const Node2Input = document.querySelector('#Node2')
     
+    const workerNode1Input = document.querySelector('#workerNode1')
+    const workerNode2Input = document.querySelector('#workerNode2')
 
 
     myForm.addEventListener('submit', onSubmit)
@@ -77,7 +88,7 @@
     function onSubmit(e) {
       e.preventDefault()
       console.log(filenameInput.value)
-      socket.emit('filename', [filenameInput.value, samplesInput.value, splitInput.value])
+      socket.emit('filename', [filenameInput.value, samplesInput.value, splitInput.value, workerNode1Input.value, workerNode2Input.value])
       socket.emit('samples', samplesInput.value)
       socket.emit('split', splitInput.value)
 
