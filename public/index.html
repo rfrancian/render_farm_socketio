@@ -67,7 +67,7 @@
 <script src="/socket.io/socket.io.js"></script>
 <script>
 
-
+    var startTime 
     var socket = io();
 
     const myForm = document.querySelector('#my-form')
@@ -96,7 +96,7 @@
       socket.emit('split', splitInput.value)
 
       msg.innerHTML = ` file name: ${filenameInput.value}  `
-      timeStamp.innerHTML = `start time: ${new Date().getTime()}`
+      startTime = new Date.now()
       return false;
     }
 

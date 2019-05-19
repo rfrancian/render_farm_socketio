@@ -2,6 +2,7 @@
 
 var stripNumber = 0;
 
+
 /**
  * Module dependencies.
  */
@@ -257,6 +258,7 @@ function renderNode1(ScriptName, Filename, Samples, WorkerNode1, minX, maxX, spl
               console.log(stripNumber);
               console.log(split);
               if (stripNumber < split ) { nextNode2(ScriptName, Filename, Samples, WorkerNode2, split) }
+              io.emit('node2Message', `elapsed time: ${Date.now()-startTime}`)
 
 
           });
