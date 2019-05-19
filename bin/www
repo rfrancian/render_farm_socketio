@@ -184,6 +184,44 @@ function renderNode1(ScriptName, Filename, Samples, WorkerNode1, minX, maxX, spl
     }
     
 
+    function nextNode1(ScriptName, Filename, Samples, WorkerNode1, split) {
+
+      console.log('here: ',ScriptName, Filename, Samples, WorkerNode1);
+
+      const minX = stripNumber*1/split;
+      const maxX = stripNumber*1/split + 1/split;
+      stripNumber += 1
+
+      
+      const childProcessNode1 = spawn(ScriptName, [Filename, Samples, WorkerNode1, minX, maxX]);
+      
+          childProcessNode1.stdout.on('data', (data) => {
+              io.emit('node1Message', 'node 1: ' + data)
+              // console.log(`stdout: ${data}`);
+          });
+      
+      
+          childProcessNode1.stderr.on('data', (data) => {
+              io.emit('node1Message', 'node 1: ' + data)
+              console.log(`stderr: ${data}`);
+          });
+        
+      
+          childProcessNode1.on('close', (code) => {
+              io.emit('node1Message', 'node 1: exit code ' + code)
+              io.emit('node1Message', `node 1: finished strip ${stripNumber}  min x= ${minX}, max x= ${maxX}`)
+              console.log(`child process exited with code ${code}`);
+              if (stripNumber < split ) { nextNode1(ScriptName, Filename, Samples, WorkerNode2, split) }
+
+          });
+      
+        
+        console.log('### DONE');
+      }
+      
+    
+
+
 
     function nextNode2(ScriptName, Filename, Samples, WorkerNode2, split) {
 
