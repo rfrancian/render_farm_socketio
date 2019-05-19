@@ -97,6 +97,7 @@
     }
 
     socket.on('node1Message', function(msg) {
+      Node1Input.scrollTop = Node1Input.scrollHeight
       Node1Input.value += msg + '' + '\n'
     })
     socket.on('node2Message', function(msg) {
