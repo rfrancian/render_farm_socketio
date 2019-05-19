@@ -214,6 +214,8 @@ function renderNode1(ScriptName, Filename, Samples, WorkerNode1, minX, maxX, spl
               io.emit('node2Message', `node 2: finished strip ${stripNumber}    min x= ${minX},  max x= ${maxX}`)
               io.emit('node2Message', 'node 2: exit code ' + code)
               console.log(`child process exited with code ${code}`);
+              console.log(stripNumber);
+              console.log(split);
               if (stripNumber < split ) { nextNode2(ScriptName, Filename, Samples, WorkerNode2, minX, maxX) }
 
 
