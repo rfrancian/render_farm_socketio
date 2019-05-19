@@ -124,7 +124,7 @@ function onListening() {
 
 
 
-function renderNode1(ScriptName, Filename, Samples, WorkerNode1, minX, maxX) {
+function renderNode1(ScriptName, Filename, Samples, WorkerNode1, minX, maxX, split) {
 
   console.log('here: ',ScriptName, Filename, Samples, WorkerNode1);
   
@@ -154,7 +154,7 @@ function renderNode1(ScriptName, Filename, Samples, WorkerNode1, minX, maxX) {
   
 
 
-  function renderNode2(ScriptName, Filename, Samples, WorkerNode2, minX, maxX) {
+  function renderNode2(ScriptName, Filename, Samples, WorkerNode2, minX, maxX, split) {
 
     console.log('here: ',ScriptName, Filename, Samples, WorkerNode2);
     
@@ -176,7 +176,7 @@ function renderNode1(ScriptName, Filename, Samples, WorkerNode1, minX, maxX) {
             io.emit('node2Message', `node 2: finished strip ${stripNumber}    min x= ${minX},  max x= ${maxX}`)
             io.emit('node2Message', 'node 2: exit code ' + code)
             console.log(`child process exited with code ${code}`);
-            nextNode2(ScriptName, Filename, Samples, WorkerNode2)
+            nextNode2(ScriptName, Filename, Samples, WorkerNode2, split)
         });
     
       
@@ -185,7 +185,7 @@ function renderNode1(ScriptName, Filename, Samples, WorkerNode1, minX, maxX) {
     
 
 
-    function nextNode2(ScriptName, Filename, Samples, WorkerNode2) {
+    function nextNode2(ScriptName, Filename, Samples, WorkerNode2, split) {
 
       console.log('here: ',ScriptName, Filename, Samples, WorkerNode2);
       
@@ -247,9 +247,9 @@ function renderNode1(ScriptName, Filename, Samples, WorkerNode1, minX, maxX) {
       console.log(samples);
       
       // render left and right sides of image
-      renderNode1(scriptnameNode1, filename, samples, workerNode1, minX_Node1, maxX_Node1);
+      renderNode1(scriptnameNode1, filename, samples, workerNode1, minX_Node1, maxX_Node1, split);
       
-      renderNode2(scriptnameNode2, filename, samples, workerNode2, minX_Node2, maxX_Node2);
+      renderNode2(scriptnameNode2, filename, samples, workerNode2, minX_Node2, maxX_Node2, split);
      
   }
   
