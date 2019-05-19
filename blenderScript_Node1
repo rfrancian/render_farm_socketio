@@ -1,0 +1,4 @@
+#!/bin/bash
+
+
+ssh $3 /Users/rsf/Downloads/blender-2.80/blender.app/Contents/MacOS/blender -b $1 -P /Volumes/blenderFiles/render_chunk.py -- $4 $5 0.0 1.0 $2
