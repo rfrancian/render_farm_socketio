@@ -145,7 +145,6 @@ function renderNode1(ScriptName, Filename, Samples, WorkerNode1, minX, maxX) {
       childProcessNode1.on('close', (code) => {
           io.emit('node1Message', 'node 1: exit code ' + code)
           io.emit('node1Message', `node 1: finished strip ${stripNumber}  min x= ${minX}, max x= ${maxX}`)
-          stripNumber += 1;
           console.log(`child process exited with code ${code}`);
       });
   
@@ -153,6 +152,8 @@ function renderNode1(ScriptName, Filename, Samples, WorkerNode1, minX, maxX) {
     console.log('### DONE');
   }
   
+
+
   function renderNode2(ScriptName, Filename, Samples, WorkerNode2, minX, maxX) {
 
     console.log('here: ',ScriptName, Filename, Samples, WorkerNode2);
@@ -173,9 +174,9 @@ function renderNode1(ScriptName, Filename, Samples, WorkerNode1, minX, maxX) {
     
         childProcessNode2.on('close', (code) => {
             io.emit('node2Message', `node 2: finished strip ${stripNumber}    min x= ${minX},  max x= ${maxX}`)
-            stripNumber += 1;
             io.emit('node2Message', 'node 2: exit code ' + code)
             console.log(`child process exited with code ${code}`);
+            nextNode2(ScriptName, Filename, Samples, WorkerNode2, minX, maxX)
         });
     
       
@@ -183,17 +184,52 @@ function renderNode1(ScriptName, Filename, Samples, WorkerNode1, minX, maxX) {
     }
     
 
+
+    function nextNode2(ScriptName, Filename, Samples, WorkerNode2, minX, maxX) {
+
+      console.log('here: ',ScriptName, Filename, Samples, WorkerNode2);
+      
+      const minX = stripNumber*1/split;
+      const maxX = stripNumber*1/split + 1/split;
+      stripNumber += 1
+
+
+      const childProcessNode2 = spawn(ScriptName, [Filename, Samples, WorkerNode2, minX, maxX]);
+
+      
+      
+          childProcessNode2.stdout.on('data', (data) => {
+              io.emit('node2Message', 'node 2: ' + data)
+              // console.log(`stdout: ${data}`);
+          });
+      
+      
+          childProcessNode2.stderr.on('data', (data) => {
+              io.emit('node2Message', 'node 2: ' + data)
+              console.log(`stderr: ${data}`);
+          });
+        
+      
+          childProcessNode2.on('close', (code) => {
+              io.emit('node2Message', `node 2: finished strip ${stripNumber}    min x= ${minX},  max x= ${maxX}`)
+              io.emit('node2Message', 'node 2: exit code ' + code)
+              console.log(`child process exited with code ${code}`);
+              if (stripNumber < split ) { nextNode2(ScriptName, Filename, Samples, WorkerNode2, minX, maxX) }
+
+
+          });
+      
+        
+        console.log('### DONE');
+      }
+      
+
+
+
+
     async function imageRender(filename, samples, split, workerNode1, workerNode2) {
 
-      // var renderNode2 = require('./renderthisNode2');
-      // var renderNode1 = require('./renderthisNode1');
-      
-      // // username and IP address of
-      // worker nodes
-      // const workerNode2 = 'rsf@192.168.86.36'
-      // const workerNode1 = 'rsf@192.168.86.20'
-      
-      // individual scripts for each workerNode
+  
       const scriptnameNode1 = '/Volumes/blenderFiles/blenderScript_Node1'
       const scriptnameNode2 = '/Volumes/blenderFiles/blenderScript_Node2'
       
