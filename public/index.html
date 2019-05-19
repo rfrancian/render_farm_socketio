@@ -93,7 +93,7 @@
       socket.emit('samples', samplesInput.value)
       socket.emit('split', splitInput.value)
 
-      msg.innerHTML = filenameInput.value
+      msg.innerHTML = ` file name: ${filenameInput.value}  `
       timeStamp.innerHTML = new Date().getTime()
       return false;
     }
