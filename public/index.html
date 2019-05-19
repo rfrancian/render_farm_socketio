@@ -94,9 +94,7 @@
       socket.emit('filename', [filenameInput.value, samplesInput.value, splitInput.value, workerNode1Input.value, workerNode2Input.value])
       socket.emit('samples', samplesInput.value)
       socket.emit('split', splitInput.value)
-
       msg.innerHTML = ` file name: ${filenameInput.value}  `
-      startTime = new Date.now()
       return false;
     }
 

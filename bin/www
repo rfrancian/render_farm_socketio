@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 var stripNumber = 0;
-
+var startTime = new Date.now()
 
 /**
  * Module dependencies.
@@ -49,6 +49,7 @@ server.on('listening', onListening);
 
 io.on('connection', function(socket){
   socket.on('filename', function(msg1){
+    startTime =  Date.now()
     io.emit('node1Message', 'my important message: ' + msg1)
     io.emit('node1Message', 'my important message: ' + msg1[3])
 
