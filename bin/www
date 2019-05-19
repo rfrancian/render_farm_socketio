@@ -205,10 +205,10 @@ function renderNode1(ScriptName, Filename, Samples, WorkerNode1, minX, maxX) {
       
       // render left and right sides of image
       renderNode1(scriptnameNode1, filename, samples, workerNode1, minX_Node1, maxX_Node1);
-      io.emit('node1Message', 'node 1: finished strip 1 ' + code)
+      io.emit('node1Message', 'node 1: finished strip 1 ')
 
       renderNode2(scriptnameNode2, filename, samples, workerNode2, minX_Node2, maxX_Node2);
-      io.emit('node2Message', 'node 2: finished strip 2 ' + code)
+      io.emit('node2Message', 'node 2: finished strip 2 ')
       
   }
   
