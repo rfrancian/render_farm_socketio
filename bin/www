@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-var stripNumber = 0.0;
+var stripNumber = 0;
 
 /**
  * Module dependencies.
@@ -197,11 +197,12 @@ function renderNode1(ScriptName, Filename, Samples, WorkerNode1, minX, maxX) {
       const scriptnameNode1 = '/Volumes/blenderFiles/blenderScript_Node1'
       const scriptnameNode2 = '/Volumes/blenderFiles/blenderScript_Node2'
       
-      const minX_Node1 = 0.0;
-      const maxX_Node1 = split;
-      
-      const minX_Node2 = split;
-      const maxX_Node2 = 1.0;
+      const minX_Node1 = stripNumber*1/split;
+      const maxX_Node1 = stripNumber*1/split + 1/split;
+      stripNumber += 1
+      const minX_Node2 = stripNumber*1/split;
+      const maxX_Node2 = stripNumber*1/split + 1/split;
+      stripNumber += 1
       
       // test logs
       console.log(workerNode2);
