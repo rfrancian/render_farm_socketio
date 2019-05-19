@@ -233,6 +233,9 @@ function renderNode1(ScriptName, Filename, Samples, WorkerNode1, minX, maxX, spl
       const scriptnameNode1 = '/Volumes/blenderFiles/blenderScript_Node1'
       const scriptnameNode2 = '/Volumes/blenderFiles/blenderScript_Node2'
       
+      console.log(stripNumber);
+      console.log(split);
+
       const minX_Node1 = stripNumber*1/split;
       const maxX_Node1 = stripNumber*1/split + 1/split;
       stripNumber += 1
@@ -241,6 +244,8 @@ function renderNode1(ScriptName, Filename, Samples, WorkerNode1, minX, maxX, spl
       stripNumber += 1
       
       // test logs
+      console.log(stripNumber);
+      console.log(split);
       console.log(workerNode2);
       console.log(workerNode1);
       console.log(filename);
