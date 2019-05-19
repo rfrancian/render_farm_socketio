@@ -55,6 +55,7 @@
       </div>
       <input class="btn" type="submit" value="Submit">
     </form>
+    <div class="timeStamp"></div>
 
     <ul id="users"></ul>
 
@@ -93,6 +94,7 @@
       socket.emit('split', splitInput.value)
 
       msg.innerHTML = filenameInput.value
+      timeStamp.innerHTML = new Date().getTime()
       return false;
     }
 
