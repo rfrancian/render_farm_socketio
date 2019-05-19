@@ -235,6 +235,8 @@ function renderNode1(ScriptName, Filename, Samples, WorkerNode1, minX, maxX, spl
       const scriptnameNode1 = '/Volumes/blenderFiles/blenderScript_Node1'
       const scriptnameNode2 = '/Volumes/blenderFiles/blenderScript_Node2'
       
+      stripNumber =0;
+
       console.log(stripNumber);
       console.log(split);
 
