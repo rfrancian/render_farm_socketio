@@ -216,7 +216,7 @@ function renderNode1(ScriptName, Filename, Samples, WorkerNode1, minX, maxX, spl
               console.log(`child process exited with code ${code}`);
               console.log(stripNumber);
               console.log(split);
-              if (stripNumber < split ) { nextNode2(ScriptName, Filename, Samples, WorkerNode2, minX, maxX) }
+              if (stripNumber < split ) { nextNode2(ScriptName, Filename, Samples, WorkerNode2, split) }
 
 
           });
