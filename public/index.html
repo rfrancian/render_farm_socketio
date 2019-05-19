@@ -74,6 +74,8 @@
     const filenameInput = document.querySelector('#filename')
     const jobidInput = document.querySelector('#jobid')
     const msg = document.querySelector('.msg')
+    const timeStamp = document.querySelector('.timeStamp')
+
     const samplesInput = document.querySelector('#samples')
     const splitInput = document.querySelector('#split')
 
@@ -94,7 +96,7 @@
       socket.emit('split', splitInput.value)
 
       msg.innerHTML = ` file name: ${filenameInput.value}  `
-      timeStamp.innerHTML = new Date().getTime()
+      timeStamp.innerHTML = `start time: ${new Date().getTime()}`
       return false;
     }
 
