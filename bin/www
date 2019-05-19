@@ -1,5 +1,7 @@
 #!/usr/bin/env node
 
+var stripNumber = 0.0;
+
 /**
  * Module dependencies.
  */
@@ -142,7 +144,8 @@ function renderNode1(ScriptName, Filename, Samples, WorkerNode1, minX, maxX) {
   
       childProcessNode1.on('close', (code) => {
           io.emit('node1Message', 'node 1: exit code ' + code)
-          io.emit('node1Message', 'node 1: finished strip 1 ')
+          io.emit('node1Message', 'node 1: finished strip 1 ' + stripNumber)
+          stripNumber += 0.1;
           console.log(`child process exited with code ${code}`);
       });
   
@@ -169,7 +172,8 @@ function renderNode1(ScriptName, Filename, Samples, WorkerNode1, minX, maxX) {
       
     
         childProcessNode2.on('close', (code) => {
-            io.emit('node2Message', 'node 2: finished strip 2 ')
+            io.emit('node2Message', 'node 2: finished strip 2 ' + stripNumber)
+            stripNumber += 0.1;
             io.emit('node2Message', 'node 2: exit code ' + code)
             console.log(`child process exited with code ${code}`);
         });
