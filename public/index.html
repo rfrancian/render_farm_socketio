@@ -74,7 +74,7 @@
     const filenameInput = document.querySelector('#filename')
     const jobidInput = document.querySelector('#jobid')
     const msg = document.querySelector('.msg')
-    const timeStamp = document.querySelector('.timeStamp')
+    const timeStampInput = document.querySelector('.timeStamp')
 
     const samplesInput = document.querySelector('#samples')
     const splitInput = document.querySelector('#split')
@@ -94,6 +94,7 @@
       socket.emit('filename', [filenameInput.value, samplesInput.value, splitInput.value, workerNode1Input.value, workerNode2Input.value])
       socket.emit('samples', samplesInput.value)
       socket.emit('split', splitInput.value)
+      socket.emit('timeStamp', timestampInput.value)
       msg.innerHTML = ` file name: ${filenameInput.value}  `
       return false;
     }
@@ -101,6 +102,7 @@
     socket.on('node1Message', function(msg) {
       Node1Input.value += msg + '' + '\n'
       Node1Input.scrollTop = Node1Input.scrollHeight
+      socket.emit('timeStamp', timestampInput.value)
 
     })
     socket.on('node2Message', function(msg) {
