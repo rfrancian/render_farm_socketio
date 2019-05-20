@@ -216,6 +216,7 @@ function renderNode1(ScriptName, Filename, Samples, WorkerNode1, minX, maxX, spl
               io.emit('node1Message', 'node 1: exit code ' + code)
               console.log(`child process exited with code ${code}`);
               if (stripNumber < split ) { nextNode1(ScriptName, Filename, Samples, WorkerNode1, split) }
+              io.emit('node1Message', `elapsed time: ${Date.now()-startTime}`)
 
           });
       
