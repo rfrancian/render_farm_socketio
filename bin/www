@@ -130,7 +130,7 @@ function renderNode1(ScriptName, Filename, Samples, WorkerNode1, minX, maxX, spl
 
   console.log('here: ',ScriptName, Filename, Samples, WorkerNode1);
 
-  minX = minx.toFixed(2)
+  minX = minX.toFixed(2)
   maxX = maxX.toFixed(2)
 
 
@@ -166,7 +166,7 @@ function renderNode1(ScriptName, Filename, Samples, WorkerNode1, minX, maxX, spl
 
     console.log('here: ',ScriptName, Filename, Samples, WorkerNode2);
     
-    minX = minx.toFixed(2)
+    minX = minX.toFixed(2)
     maxX = maxX.toFixed(2)
 
     const childProcessNode2 = spawn(ScriptName, [Filename, Samples, WorkerNode2, minX, maxX]);
@@ -202,7 +202,8 @@ function renderNode1(ScriptName, Filename, Samples, WorkerNode1, minX, maxX, spl
       const minX = stripNumber*1/split;
       const maxX = stripNumber*1/split + 1/split;
       stripNumber += 1
-      minX = minx.toFixed(2)
+      
+      minX = minX.toFixed(2)
       maxX = maxX.toFixed(2)
 
       
@@ -245,7 +246,7 @@ function renderNode1(ScriptName, Filename, Samples, WorkerNode1, minX, maxX, spl
       const maxX = stripNumber*1/split + 1/split;
       stripNumber += 1
 
-      minX = minx.toFixed(2)
+      minX = minX.toFixed(2)
       maxX = maxX.toFixed(2)
 
       const childProcessNode2 = spawn(ScriptName, [Filename, Samples, WorkerNode2, minX, maxX]);
