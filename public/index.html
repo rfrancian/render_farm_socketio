@@ -103,12 +103,13 @@
     socket.on('node1Message', function(msg) {
       Node1Input.value += msg + '' + '\n'
       Node1Input.scrollTop = Node1Input.scrollHeight
-      timeStamp.innerHTML = ` et: ${(Date.now()-startTime)/1000}`
+      timeStamp.innerHTML = ` elapsed time :  ${(Date.now()-startTime)/1000} seconds`
 
     })
     socket.on('node2Message', function(msg) {
       Node2Input.value += msg + '' + '\n'
       Node2Input.scrollTop = Node2Input.scrollHeight
+      timeStamp.innerHTML = ` elapsed time :  ${(Date.now()-startTime)/1000} seconds`
 
     })
 
