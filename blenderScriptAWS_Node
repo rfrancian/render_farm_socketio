@@ -1,0 +1,4 @@
+#!/bin/bash
+
+
+ssh $3 blender -b $1 -P /home/rsf/render_chunk.py -- $4 $5 0.0 1.0 $2
