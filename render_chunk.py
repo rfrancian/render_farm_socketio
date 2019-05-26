@@ -83,7 +83,7 @@ bpy.data.scenes["Scene"].render.border_max_y = float(argv[3])
 # build filename
 filename = bpy.path.basename(bpy.data.filepath)
 filename = os.path.splitext(filename)[0]
-filename = "/Volumes/blenderFiles/output/" + filename + "_" + argv[0] + "_" + argv[1] + "_" + argv[2] + "_" + argv[3] + "_" + samples + "." + seed
+filename = "/Volumes/blenderFiles/output/" + filename + "_" + argv[0] + "_" + argv[1] + "_" + argv[2] + "_" + argv[3] + "_" + argv[4] + "." + argv[5]
 
 # set output filename
 bpy.data.scenes['Scene'].render.filepath = filename
