@@ -53,12 +53,15 @@ io.on('connection', function(socket){
     io.emit('node1Message', 'my important message: ' + msg1)
     io.emit('node1Message', 'my important message: ' + msg1[3])
 
-    io.emit('node1Message', 'my important message: ' + msg1[4])
+    io.emit('node1Message', 'my important message: ' + msg1[3][0])
+    io.emit('node1Message', 'my important message: ' + msg1[3][1])
+    io.emit('node1Message', 'my important message: ' + msg1[3][2])
+    io.emit('node1Message', 'my important message: ' + msg1[3][3])
     io.emit('node2Message', 'my important message: ' + msg1[2])
     io.emit('node2Message', 'my important SEED: ' + msg1[5])
 
     console.log('my important message: ' + msg1)
-    imageRender(msg1[0], msg1[1], msg1[2], msg1[3], msg1[4], msg1[5]);
+    imageRender(msg1[0], msg1[1], msg1[2], msg1[3][0], msg1[3][1], msg1[5]);
   });
 
 });

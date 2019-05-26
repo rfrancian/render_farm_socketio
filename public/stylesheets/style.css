@@ -46,12 +46,16 @@ header {
   display: flex;
   flex-direction: row;
   width: 100%;
+  padding: 5px;
+
 }
 
 .intFields {
   display: flex;
   flex-direction: row;
   width: 100%;
+  padding: 5px;
+
 }
 
 #my-form {

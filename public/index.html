@@ -26,12 +26,22 @@
         <div>
           <label for="workerNode1"> workerNode1 :</label>
           <input type="text" value = 'rsf@192.168.86.20' id="workerNode1">
-          </div>
-          <div>
+        </div>
+        <div>
           <label for="workerNode2"> workerNode2 :</label>
           <input type="text" value = 'rsf@192.168.86.41' id="workerNode2">
-          </div>
+        </div>
+        <div>
+          <label for="workerNode3"> workerNode3 :</label>
+          <input type="text" value = 'rsf@0.0.0.0' id="workerNode3">
+        </div>
+        <div>
+          <label for="workerNode4"> workerNode4 :</label>
+          <input type="text" value = 'rsf@0.0.0.0' id="workerNode4">
+        </div>
+
       </div>     
+
       <div class="intFields">
         <div>
           <label for="seed"> seed :</label>
@@ -88,8 +98,10 @@
     const Node1Input = document.querySelector('#Node1')
     const Node2Input = document.querySelector('#Node2')
     
-    const workerNode1Input = document.querySelector('#workerNode1')
-    const workerNode2Input = document.querySelector('#workerNode2')
+    var workerNodeInput = [ document.querySelector('#workerNode1'), document.querySelector('#workerNode2'),document.querySelector('#workerNode3'),document.querySelector('#workerNode4'),]
+    // const workerNodeInput[1] = document.querySelector('#workerNode2')
+    // const workerNodeInput = document.querySelector('#workerNode3')
+    // const workerNodeInput = document.querySelector('#workerNode4')
 
 
     myForm.addEventListener('submit', onSubmit)
@@ -98,7 +110,7 @@
       e.preventDefault()
       console.log(filenameInput.value)
       startTime = Date.now()
-      socket.emit('filename', [filenameInput.value, samplesInput.value, splitInput.value, workerNode1Input.value, workerNode2Input.value, seedInput.value])
+      socket.emit('filename', [filenameInput.value, samplesInput.value, splitInput.value, workerNodeInput, seedInput.value])
       socket.emit('samples', samplesInput.value)
       socket.emit('split', splitInput.value)
       msg.innerHTML = ` file name: ${filenameInput.value}  `
