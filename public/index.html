@@ -98,7 +98,7 @@
     const Node1Input = document.querySelector('#Node1')
     const Node2Input = document.querySelector('#Node2')
     
-    var workerNodeInput = [ document.querySelector('#workerNode1'), document.querySelector('#workerNode2'),document.querySelector('#workerNode3'),document.querySelector('#workerNode4'),]
+    var workerNodeInput = [ document.querySelector('#workerNode1').value, document.querySelector('#workerNode2').value, document.querySelector('#workerNode3').value, document.querySelector('#workerNode4').value]
     // const workerNodeInput[1] = document.querySelector('#workerNode2')
     // const workerNodeInput = document.querySelector('#workerNode3')
     // const workerNodeInput = document.querySelector('#workerNode4')
@@ -109,6 +109,7 @@
     function onSubmit(e) {
       e.preventDefault()
       console.log(filenameInput.value)
+      console.log(workerNodeInput)
       startTime = Date.now()
       socket.emit('filename', [filenameInput.value, samplesInput.value, splitInput.value, workerNodeInput, seedInput.value])
       socket.emit('samples', samplesInput.value)
