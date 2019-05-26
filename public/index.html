@@ -31,8 +31,8 @@
           <input type="text" value = 'rsf@192.168.86.41' id="workerNode2">
       </div>     
       <div>
-        <label for="jobid"> job id:</label>
-        <input type="text" value = '000' id="jobid">
+        <label for="seed"> seed :</label>
+        <input type="text" value = '0' id="seed">
       </div>
       <div>
           <label for="samples"> samples:</label>
@@ -74,7 +74,7 @@
 
     const myForm = document.querySelector('#my-form')
     const filenameInput = document.querySelector('#filename')
-    const jobidInput = document.querySelector('#jobid')
+    const seedInput = document.querySelector('#seed')
     const msg = document.querySelector('.msg')
     const timeStamp = document.querySelector('.timeStamp')
 
@@ -94,7 +94,7 @@
       e.preventDefault()
       console.log(filenameInput.value)
       startTime = Date.now()
-      socket.emit('filename', [filenameInput.value, samplesInput.value, splitInput.value, workerNode1Input.value, workerNode2Input.value])
+      socket.emit('filename', [filenameInput.value, samplesInput.value, splitInput.value, workerNode1Input.value, workerNode2Input.value, seedInput.value])
       socket.emit('samples', samplesInput.value)
       socket.emit('split', splitInput.value)
       msg.innerHTML = ` file name: ${filenameInput.value}  `

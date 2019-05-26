@@ -45,11 +45,11 @@ argv = argv[argv.index("--") + 1:]  # get all args after "--"
 xres = 2048
 yres = 4096
 respercent = 100
-seed = 0
+seed = int(argv[5])
 samples = int(argv[4])
 
 # set seed and samples
-#bpy.data.scenes["Scene"].cycles.seed= seed
+bpy.data.scenes["Scene"].cycles.seed= seed
 bpy.data.scenes["Scene"].cycles.samples= samples
 
 
@@ -83,7 +83,7 @@ bpy.data.scenes["Scene"].render.border_max_y = float(argv[3])
 # build filename
 filename = bpy.path.basename(bpy.data.filepath)
 filename = os.path.splitext(filename)[0]
-filename = "/Volumes/blenderFiles/output/" + filename + "_" + argv[0] + "_" + argv[1] + "_" + argv[2] + "_" + argv[3]
+filename = "/Volumes/blenderFiles/output/" + filename + "_" + argv[0] + "_" + argv[1] + "_" + argv[2] + "_" + argv[3] + "_" + samples + "." + seed
 
 # set output filename
 bpy.data.scenes['Scene'].render.filepath = filename

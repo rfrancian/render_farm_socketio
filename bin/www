@@ -55,8 +55,10 @@ io.on('connection', function(socket){
 
     io.emit('node1Message', 'my important message: ' + msg1[4])
     io.emit('node2Message', 'my important message: ' + msg1[2])
+    io.emit('node2Message', 'my important SEED: ' + msg1[5])
+
     console.log('my important message: ' + msg1)
-    imageRender(msg1[0], msg1[1], msg1[2], msg1[3], msg1[4]);
+    imageRender(msg1[0], msg1[1], msg1[2], msg1[3], msg1[4], msg1[5]);
   });
 
 });
@@ -126,15 +128,15 @@ function onListening() {
 
 
 
-function renderNode1(ScriptName, Filename, Samples, WorkerNode1, minX, maxX, split) {
+function renderNode1(ScriptName, Filename, Samples, WorkerNode1, minX, maxX, split, seed) {
 
-  console.log('here: ',ScriptName, Filename, Samples, WorkerNode1);
+  console.log('here: ',ScriptName, Filename, Samples, WorkerNode1, seed);
 
   minX = minX.toFixed(2)
   maxX = maxX.toFixed(2)
 
 
-  const childProcessNode1 = spawn(ScriptName, [Filename, Samples, WorkerNode1, minX, maxX]);
+  const childProcessNode1 = spawn(ScriptName, [Filename, Samples, WorkerNode1, minX, maxX, seed]);
   
       childProcessNode1.stdout.on('data', (data) => {
           io.emit('node1Message', 'node 1: ' + data)
@@ -152,7 +154,7 @@ function renderNode1(ScriptName, Filename, Samples, WorkerNode1, minX, maxX, spl
           io.emit('node1Message', 'node 1: exit code ' + code)
           io.emit('node1Message', `node 1: finished strip ${stripNumber}  min x= ${minX}, max x= ${maxX}`)
           console.log(`child process exited with code ${code}`);
-          nextNode1(ScriptName, Filename, Samples, WorkerNode1, split)
+          nextNode1(ScriptName, Filename, Samples, WorkerNode1, split, seed)
 
       });
   
@@ -162,14 +164,14 @@ function renderNode1(ScriptName, Filename, Samples, WorkerNode1, minX, maxX, spl
   
 
 
-  function renderNode2(ScriptName, Filename, Samples, WorkerNode2, minX, maxX, split) {
+  function renderNode2(ScriptName, Filename, Samples, WorkerNode2, minX, maxX, split, seed) {
 
     console.log('here: ',ScriptName, Filename, Samples, WorkerNode2);
     
     minX = minX.toFixed(2)
     maxX = maxX.toFixed(2)
 
-    const childProcessNode2 = spawn(ScriptName, [Filename, Samples, WorkerNode2, minX, maxX]);
+    const childProcessNode2 = spawn(ScriptName, [Filename, Samples, WorkerNode2, minX, maxX, seed]);
     
         childProcessNode2.stdout.on('data', (data) => {
             io.emit('node2Message', 'node 2: ' + data)
@@ -187,7 +189,7 @@ function renderNode1(ScriptName, Filename, Samples, WorkerNode1, minX, maxX, spl
             io.emit('node2Message', `node 2: finished strip ${stripNumber}    min x= ${minX},  max x= ${maxX}`)
             io.emit('node2Message', 'node 2: exit code ' + code)
             console.log(`child process exited with code ${code}`);
-            nextNode2(ScriptName, Filename, Samples, WorkerNode2, split)
+            nextNode2(ScriptName, Filename, Samples, WorkerNode2, split, seed)
         });
     
       
@@ -195,9 +197,9 @@ function renderNode1(ScriptName, Filename, Samples, WorkerNode1, minX, maxX, spl
     }
     
 
-    function nextNode1(ScriptName, Filename, Samples, WorkerNode1, split) {
+    function nextNode1(ScriptName, Filename, Samples, WorkerNode1, split, seed) {
 
-      console.log('here: ',ScriptName, Filename, Samples, WorkerNode1);
+      console.log('here: ',ScriptName, Filename, Samples, WorkerNode1, seed);
 
       var minX = stripNumber*1/split;
       var maxX = stripNumber*1/split + 1/split;
@@ -207,7 +209,7 @@ function renderNode1(ScriptName, Filename, Samples, WorkerNode1, minX, maxX, spl
       maxX = maxX.toFixed(2)
 
       
-      const childProcessNode1 = spawn(ScriptName, [Filename, Samples, WorkerNode1, minX, maxX]);
+      const childProcessNode1 = spawn(ScriptName, [Filename, Samples, WorkerNode1, minX, maxX, seed]);
       
           childProcessNode1.stdout.on('data', (data) => {
               io.emit('node1Message', 'node 1: ' + data)
@@ -238,9 +240,9 @@ function renderNode1(ScriptName, Filename, Samples, WorkerNode1, minX, maxX, spl
 
 
 
-    function nextNode2(ScriptName, Filename, Samples, WorkerNode2, split) {
+    function nextNode2(ScriptName, Filename, Samples, WorkerNode2, split, seed) {
 
-      console.log('here: ',ScriptName, Filename, Samples, WorkerNode2, split);
+      console.log('here: ',ScriptName, Filename, Samples, WorkerNode2, split, seed);
       
       var minX = stripNumber*1/split;
       var maxX = stripNumber*1/split + 1/split;
@@ -249,7 +251,7 @@ function renderNode1(ScriptName, Filename, Samples, WorkerNode1, minX, maxX, spl
       minX = minX.toFixed(2)
       maxX = maxX.toFixed(2)
 
-      const childProcessNode2 = spawn(ScriptName, [Filename, Samples, WorkerNode2, minX, maxX]);
+      const childProcessNode2 = spawn(ScriptName, [Filename, Samples, WorkerNode2, minX, maxX, seed]);
 
       
       
@@ -285,7 +287,7 @@ function renderNode1(ScriptName, Filename, Samples, WorkerNode1, minX, maxX, spl
 
 
 
-    async function imageRender(filename, samples, split, workerNode1, workerNode2) {
+    async function imageRender(filename, samples, split, workerNode1, workerNode2, seed) {
 
   
       const scriptnameNode1 = '/Volumes/blenderFiles/blenderScript_Node1'
@@ -312,8 +314,8 @@ function renderNode1(ScriptName, Filename, Samples, WorkerNode1, minX, maxX, spl
       console.log(samples);
       
       // render left and right sides of image
-      renderNode1(scriptnameNode1, filename, samples, workerNode1, minX_Node1, maxX_Node1, split);      
-      renderNode2(scriptnameNode2, filename, samples, workerNode2, minX_Node2, maxX_Node2, split);
+      renderNode1(scriptnameNode1, filename, samples, workerNode1, minX_Node1, maxX_Node1, split, seed);      
+      renderNode2(scriptnameNode2, filename, samples, workerNode2, minX_Node2, maxX_Node2, split, seed);
      
   }
   
