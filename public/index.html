@@ -54,10 +54,6 @@
               </div>
           <input type="text" value = 'rsf@0.0.0.4' id="workerNode4">
         </div>
-
-      </div>     
-
-      <div class="nodeFields">
           <div>
               <div class="checkboxes">
                   <input type="checkbox" id="node5Selection" name="node5checkbox" value="node5Selection">
@@ -65,6 +61,11 @@
                 </div>
             <input type="text" value = 'rsf@0.0.0.5' id="workerNode5">
           </div>
+        
+      </div>     
+
+      <div class="nodeFields">
+
           <div>
               <div class="checkboxes">
                   <input type="checkbox" id="node6Selection" name="node6checkbox" value="node6Selection">
@@ -86,7 +87,23 @@
                 </div>
             <input type="text" value = 'rsf@0.0.0.8' id="workerNode8">
           </div>
-  
+          <div>
+              <div class="checkboxes">
+                  <input type="checkbox" id="node9Selection" name="node9checkbox" value="node9Selection">
+                  <label for="node9Selection"> worker Node 9</label>
+                </div>
+            <input type="text" value = 'rsf@0.0.0.9' id="workerNode9">
+          </div>
+          <div>
+              <div class="checkboxes">
+                  <input type="checkbox" id="node10Selection" name="node10checkbox" value="node10Selection">
+                  <label for="node10Selection"> worker Node 10</label>
+                </div>
+            <input type="text" value = 'rsf@0.0.0.10' id="workerNode10">
+          </div>
+
+
+
         </div>     
   
 
@@ -140,6 +157,14 @@
           <label for="Node8"> Node 8:</label>
           <textarea id="Node8" rows='8' cols= '150'></textarea>
       </div>
+      <div>
+          <label for="Node9"> Node 9:</label>
+          <textarea id="Node9" rows='8' cols= '150'></textarea>
+      </div>
+      <div>
+          <label for="Node10"> Node 10:</label>
+          <textarea id="Node10" rows='8' cols= '150'></textarea>
+      </div>
 
     
     </form>
@@ -177,6 +202,8 @@
     const Node6Input = document.querySelector('#Node6')
     const Node7Input = document.querySelector('#Node7')
     const Node8Input = document.querySelector('#Node8')
+    const Node9Input = document.querySelector('#Node9')
+    const Node10Input = document.querySelector('#Node10')
     
     var workerNodeInput = [ document.querySelector('#workerNode1').value, 
                             document.querySelector('#workerNode2').value, 
@@ -185,7 +212,9 @@
                             document.querySelector('#workerNode5').value, 
                             document.querySelector('#workerNode6').value, 
                             document.querySelector('#workerNode7').value, 
-                            document.querySelector('#workerNode8').value]
+                            document.querySelector('#workerNode8').value, 
+                            document.querySelector('#workerNode9').value, 
+                            document.querySelector('#workerNode10').value]
                        
 const node1Select = document.querySelector('#node1Selection').value                            
 
@@ -248,6 +277,18 @@ const node1Select = document.querySelector('#node1Selection').value
     socket.on('node8Message', function(msg) {
       Node8Input.value += msg + '' + '\n'
       Node8Input.scrollTop = Node8Input.scrollHeight
+      timeStamp.innerHTML = ` elapsed time :  ${(Date.now()-startTime)/1000} seconds`
+
+    })
+    socket.on('node9Message', function(msg) {
+      Node9Input.value += msg + '' + '\n'
+      Node9Input.scrollTop = Node9Input.scrollHeight
+      timeStamp.innerHTML = ` elapsed time :  ${(Date.now()-startTime)/1000} seconds`
+
+    })
+    socket.on('node10Message', function(msg) {
+      Node10Input.value += msg + '' + '\n'
+      Node10Input.scrollTop = Node10Input.scrollHeight
       timeStamp.innerHTML = ` elapsed time :  ${(Date.now()-startTime)/1000} seconds`
 
     })

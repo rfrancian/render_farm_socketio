@@ -60,16 +60,18 @@ io.on('connection', function(socket){
     io.emit('node1Message', 'www.js: worker node input6: ' + msg1[3][5])
     io.emit('node1Message', 'www.js: worker node input7: ' + msg1[3][6])
     io.emit('node1Message', 'www.js: worker node input8: ' + msg1[3][7])
+    io.emit('node1Message', 'www.js: worker node input8: ' + msg1[3][8])
+    io.emit('node1Message', 'www.js: worker node input8: ' + msg1[3][9])
     io.emit('node2Message', 'my important Samples: ' + msg1[1])
     io.emit('node2Message', 'my important SEED: ' + msg1[4])
     io.emit('node2Message', 'my important Split: ' + msg1[2])
 
-    io.emit('node3Message', 'www.js: complete msg1: ' + msg1)
-    io.emit('node4Message', 'www.js: complete msg1: ' + msg1)
-    io.emit('node5Message', 'www.js: complete msg1: ' + msg1)
-    io.emit('node6Message', 'www.js: complete msg1: ' + msg1)
-    io.emit('node7Message', 'www.js: complete msg1: ' + msg1)
-    io.emit('node8Message', 'www.js: complete msg1: ' + msg1)
+    // io.emit('node3Message', 'www.js: complete msg1: ' + msg1)
+    // io.emit('node4Message', 'www.js: complete msg1: ' + msg1)
+    // io.emit('node5Message', 'www.js: complete msg1: ' + msg1)
+    // io.emit('node6Message', 'www.js: complete msg1: ' + msg1)
+    // io.emit('node7Message', 'www.js: complete msg1: ' + msg1)
+    // io.emit('node8Message', 'www.js: complete msg1: ' + msg1)
 
     io.emit('node3Message', 'www.js: : ' + msg1[3][2])
     io.emit('node4Message', 'www.js: : ' + msg1[3][3])
@@ -77,6 +79,8 @@ io.on('connection', function(socket){
     io.emit('node6Message', 'www.js: : ' + msg1[3][5])
     io.emit('node7Message', 'www.js: : ' + msg1[3][6])
     io.emit('node8Message', 'www.js: : ' + msg1[3][7])
+    io.emit('node9Message', 'www.js: : ' + msg1[3][8])
+    io.emit('node10Message', 'www.js: : ' + msg1[3][9])
 
     console.log('my io.on complete msg1: ' + msg1)
     console.log('my io.on complete msg1: input filename, samples, split, [workerNode], seed')
@@ -323,6 +327,8 @@ function renderNode1(ScriptName, Filename, Samples, WorkerNode1, minX, maxX, spl
       workerNode6 = workerNode[3][5]
       workerNode7 = workerNode[3][6]
       workerNode8 = workerNode[3][7]
+      workerNode9 = workerNode[3][8]
+      workerNode10 = workerNode[3][9]
 
       stripNumber =0;
 
