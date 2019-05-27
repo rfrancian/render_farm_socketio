@@ -185,7 +185,7 @@ function renderNode1(ScriptName, Filename, Samples, WorkerNode1, minX, maxX, spl
       });
   
     
-    console.log('### DONE');
+    console.log('### renderNode1 DONE');
   }
   
 
@@ -219,7 +219,7 @@ function renderNode1(ScriptName, Filename, Samples, WorkerNode1, minX, maxX, spl
         });
     
       
-      console.log('### DONE');
+      console.log('### renderNode2 DONE');
     }
     
 
@@ -259,7 +259,7 @@ function renderNode1(ScriptName, Filename, Samples, WorkerNode1, minX, maxX, spl
           });
       
         
-        console.log('### DONE');
+        console.log('### nextNode1 DONE');
       }
       
     
@@ -306,7 +306,7 @@ function renderNode1(ScriptName, Filename, Samples, WorkerNode1, minX, maxX, spl
           });
       
         
-        console.log('### DONE');
+        console.log('### nextNode2 DONE');
       }
       
 

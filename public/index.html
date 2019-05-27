@@ -1,7 +1,7 @@
 <html>
 
 <head>
-  <title>Render Farm Manager v001</title>
+  <title>Render Farm Manager v0.001</title>
   <link rel="stylesheet" href="/stylesheets/style.css">
 
   <title>Socket.IO chat</title>
@@ -9,7 +9,7 @@
 </head>
 
 <body>
-  <h1>Render farm v001</h1>
+  <h1>Render farm v 0.001</h1>
   <p>Welcome to render farm</p>
 
 
@@ -194,6 +194,7 @@
     const samplesInput = document.querySelector('#samples')
     const splitInput = document.querySelector('#split')
 
+    // textareas
     const Node1Input = document.querySelector('#Node1')
     const Node2Input = document.querySelector('#Node2')
     const Node3Input = document.querySelector('#Node3')
@@ -205,6 +206,7 @@
     const Node9Input = document.querySelector('#Node9')
     const Node10Input = document.querySelector('#Node10')
     
+    // wworker IPs
     var workerNodeInput = [ document.querySelector('#workerNode1').value, 
                             document.querySelector('#workerNode2').value, 
                             document.querySelector('#workerNode3').value, 
@@ -222,8 +224,6 @@ const node1Select = document.querySelector('#node1Selection').value
 
     function onSubmit(e) {
       e.preventDefault()
-      console.log(filenameInput.value)
-      console.log(workerNodeInput)
       startTime = Date.now()
       socket.emit('filename', [filenameInput.value, samplesInput.value, splitInput.value, workerNodeInput, seedInput.value])
       socket.emit('samples', samplesInput.value)
