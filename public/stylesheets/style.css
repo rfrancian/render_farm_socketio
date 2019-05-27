@@ -47,9 +47,13 @@ header {
   flex-direction: row;
   width: 100%;
   padding: 5px;
-
 }
 
+.submitMessages {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
 .checkboxes {
   display: flex;
   flex-direction: row;

@@ -123,7 +123,10 @@
       </div>
       <input class="btn" type="submit" value="Submit">
 
-      <div class="msg"></div>    <div class="timeStamp"></div>
+      <div class="submitMessages">
+        <div class="msg"></div>    
+        <div class="timeStamp"></div>
+      </div>
 
       <div>
           <label for="Node1"> Node 1: </label>
@@ -228,7 +231,7 @@ const node1Select = document.querySelector('#node1Selection').value
       socket.emit('filename', [filenameInput.value, samplesInput.value, splitInput.value, workerNodeInput, seedInput.value])
       socket.emit('samples', samplesInput.value)
       socket.emit('split', splitInput.value)
-      msg.innerHTML = ` file name: ${filenameInput.value}  `
+      msg.innerHTML = ` file name: ${filenameInput.value}     :   `
       return false;
     }
 
