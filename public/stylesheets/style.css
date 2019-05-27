@@ -37,9 +37,9 @@ header {
 
 .container {
   margin: auto;
-  width: 1000px;
+  width: 1200px;
   overflow: auto;
-  padding: 3rem 2rem;
+  padding: 1rem 1rem;
 }
 
 .nodeFields {
@@ -50,6 +50,11 @@ header {
 
 }
 
+.checkboxes {
+  display: flex;
+  flex-direction: row;
+  padding: 1px 5px;
+}
 .intFields {
   display: flex;
   flex-direction: row;
@@ -69,7 +74,7 @@ header {
 
 
 #my-form input[type='text'] {
-  width: 100%;
+  width: 80%;
   padding: 8px;
   margin-bottom: 10px;
   border-radius: 5px;

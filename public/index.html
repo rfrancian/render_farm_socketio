@@ -24,19 +24,34 @@
       
       <div class="nodeFields">
         <div>
-          <label for="workerNode1"> workerNode1 :</label>
+          <div class="checkboxes">
+            <input type="checkbox" id="node1Selection" name="node1checkbox" value="node1Selection">
+            <label for="node1Selection"> worker Node 1</label>
+          </div>
           <input type="text" value = 'rsf@192.168.86.20' id="workerNode1">
         </div>
+
         <div>
-          <label for="workerNode2"> workerNode2 :</label>
+          <div class="checkboxes">
+            <input type="checkbox" id="node2Selection" name="node2checkbox" value="node2Selection">
+            <label for="node2Selection"> worker Node 2</label>
+          </div>
           <input type="text" value = 'rsf@192.168.86.41' id="workerNode2">
         </div>
+
         <div>
-          <label for="workerNode3"> workerNode3 :</label>
+            <div class="checkboxes">
+                <input type="checkbox" id="node3Selection" name="node3checkbox" value="node3Selection">
+                <label for="node3Selection"> worker Node 3</label>
+              </div>
           <input type="text" value = 'rsf@0.0.0.0' id="workerNode3">
         </div>
+
         <div>
-          <label for="workerNode4"> workerNode4 :</label>
+            <div class="checkboxes">
+                <input type="checkbox" id="node4Selection" name="node4checkbox" value="node4Selection">
+                <label for="node4Selection"> worker Node 4</label>
+              </div>
           <input type="text" value = 'rsf@0.0.0.0' id="workerNode4">
         </div>
 
@@ -74,7 +89,7 @@
         </div>
         <div>    
           <label for="split"> split:</label>
-          <input type="text" value = '4' id="split">
+          <input type="text" value = '8' id="split">
         </div>
       </div>
 
@@ -82,12 +97,21 @@
 
       <div>
           <label for="Node1"> Node 1: </label>
-          <textarea id="Node1" rows='10' cols= '122'></textarea>
+          <textarea id="Node1" rows='8' cols= '150'></textarea>
       </div>
       <div>
           <label for="Node2"> Node 2:</label>
-          <textarea id="Node2" rows='10' cols= '122'></textarea>
+          <textarea id="Node2" rows='8' cols= '150'></textarea>
       </div>
+      <div>
+          <label for="Node3"> Node 3:</label>
+          <textarea id="Node3" rows='8' cols= '150'></textarea>
+      </div>
+      <div>
+          <label for="Node4"> Node 4:</label>
+          <textarea id="Node4" rows='8' cols= '150'></textarea>
+      </div>
+
       <input class="btn" type="submit" value="Submit">
     </form>
 
@@ -118,6 +142,8 @@
 
     const Node1Input = document.querySelector('#Node1')
     const Node2Input = document.querySelector('#Node2')
+    const Node3Input = document.querySelector('#Node3')
+    const Node4Input = document.querySelector('#Node4')
     
     var workerNodeInput = [ document.querySelector('#workerNode1').value, 
                             document.querySelector('#workerNode2').value, 
@@ -127,11 +153,8 @@
                             document.querySelector('#workerNode6').value, 
                             document.querySelector('#workerNode7').value, 
                             document.querySelector('#workerNode8').value]
-                            
-    // const workerNodeInput[1] = document.querySelector('#workerNode2')
-    // const workerNodeInput = document.querySelector('#workerNode3')
-    // const workerNodeInput = document.querySelector('#workerNode4')
-
+                       
+const node1Select = document.querySelector('#node1Selection').value                            
 
     myForm.addEventListener('submit', onSubmit)
 
@@ -156,6 +179,18 @@
     socket.on('node2Message', function(msg) {
       Node2Input.value += msg + '' + '\n'
       Node2Input.scrollTop = Node2Input.scrollHeight
+      timeStamp.innerHTML = ` elapsed time :  ${(Date.now()-startTime)/1000} seconds`
+
+    })
+    socket.on('node3Message', function(msg) {
+      Node3Input.value += msg + '' + '\n'
+      Node3Input.scrollTop = Node3Input.scrollHeight
+      timeStamp.innerHTML = ` elapsed time :  ${(Date.now()-startTime)/1000} seconds`
+
+    })
+    socket.on('node4Message', function(msg) {
+      Node4Input.value += msg + '' + '\n'
+      Node4Input.scrollTop = Node4Input.scrollHeight
       timeStamp.innerHTML = ` elapsed time :  ${(Date.now()-startTime)/1000} seconds`
 
     })

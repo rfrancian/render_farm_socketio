@@ -50,21 +50,25 @@ server.on('listening', onListening);
 io.on('connection', function(socket){
   socket.on('filename', function(msg1){
     startTime =  Date.now()
-    io.emit('node1Message', 'my important message: ' + msg1)
-    io.emit('node1Message', 'my important message: ' + msg1[3])
-
-    io.emit('node1Message', 'my important message: ' + msg1[3][0])
-    io.emit('node1Message', 'my important message: ' + msg1[3][1])
-    io.emit('node1Message', 'my important message: ' + msg1[3][2])
-    io.emit('node1Message', 'my important message: ' + msg1[3][3])
-    io.emit('node1Message', 'my important message: ' + msg1[3][4])
-    io.emit('node1Message', 'my important message: ' + msg1[3][5])
-    io.emit('node1Message', 'my important message: ' + msg1[3][6])
-    io.emit('node1Message', 'my important message: ' + msg1[3][7])
-    io.emit('node2Message', 'my important message: ' + msg1[2])
+    io.emit('node1Message', 'www.js: complete msg1: ' + msg1)
+    io.emit('node1Message', 'www.js: worker node input ' + msg1[3])
+    io.emit('node1Message', 'www.js: worker node input1: ' + msg1[3][0])
+    io.emit('node1Message', 'www.js: worker node input2: ' + msg1[3][1])
+    io.emit('node1Message', 'www.js: worker node input3: ' + msg1[3][2])
+    io.emit('node1Message', 'www.js: worker node input4: ' + msg1[3][3])
+    io.emit('node1Message', 'www.js: worker node input5: ' + msg1[3][4])
+    io.emit('node1Message', 'www.js: worker node input6: ' + msg1[3][5])
+    io.emit('node1Message', 'www.js: worker node input7: ' + msg1[3][6])
+    io.emit('node1Message', 'www.js: worker node input8: ' + msg1[3][7])
+    io.emit('node2Message', 'my important Samples: ' + msg1[2])
     io.emit('node2Message', 'my important SEED: ' + msg1[4])
 
-    console.log('my important message: ' + msg1)
+    io.emit('node3Message', 'www.js: complete msg1: ' + msg1)
+    io.emit('node4Message', 'www.js: complete msg1: ' + msg1)
+
+
+    console.log('my io.on complete msg1: ' + msg1)
+    console.log('my io.on complete msg1: input filename, samples, split, [workerNode], seed')
     imageRender(msg1[0], msg1[1], msg1[2], msg1, msg1[4]);
   });
 
@@ -302,7 +306,12 @@ function renderNode1(ScriptName, Filename, Samples, WorkerNode1, minX, maxX, spl
       
       workerNode1 = workerNode[3][0]
       workerNode2 = workerNode[3][1]
-
+      workerNode3 = workerNode[3][2]
+      workerNode4 = workerNode[3][3]
+      workerNode5 = workerNode[3][4]
+      workerNode6 = workerNode[3][5]
+      workerNode7 = workerNode[3][6]
+      workerNode8 = workerNode[3][7]
 
       stripNumber =0;
 
