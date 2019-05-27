@@ -66,6 +66,10 @@ io.on('connection', function(socket){
 
     io.emit('node3Message', 'www.js: complete msg1: ' + msg1)
     io.emit('node4Message', 'www.js: complete msg1: ' + msg1)
+    io.emit('node5Message', 'www.js: complete msg1: ' + msg1)
+    io.emit('node6Message', 'www.js: complete msg1: ' + msg1)
+    io.emit('node7Message', 'www.js: complete msg1: ' + msg1)
+    io.emit('node8Message', 'www.js: complete msg1: ' + msg1)
 
 
     console.log('my io.on complete msg1: ' + msg1)

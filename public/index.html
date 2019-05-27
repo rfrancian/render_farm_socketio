@@ -15,7 +15,7 @@
 
   <section class="container">
     <form id="my-form">
-      <h1>Render Information:</h1>
+      <h1>Render Inputs:</h1>
 
       <div>
         <label for="filename"> filename:</label>
@@ -112,8 +112,24 @@
           <label for="Node4"> Node 4:</label>
           <textarea id="Node4" rows='8' cols= '150'></textarea>
       </div>
+      <div>
+          <label for="Node5"> Node 5: </label>
+          <textarea id="Node5" rows='8' cols= '150'></textarea>
+      </div>
+      <div>
+          <label for="Node6"> Node 6:</label>
+          <textarea id="Node6" rows='8' cols= '150'></textarea>
+      </div>
+      <div>
+          <label for="Node7"> Node 7:</label>
+          <textarea id="Node7" rows='8' cols= '150'></textarea>
+      </div>
+      <div>
+          <label for="Node8"> Node 8:</label>
+          <textarea id="Node8" rows='8' cols= '150'></textarea>
+      </div>
 
-      <!-- <input class="btn" type="submit" value="Submit"> -->
+    
     </form>
 
 
@@ -145,6 +161,10 @@
     const Node2Input = document.querySelector('#Node2')
     const Node3Input = document.querySelector('#Node3')
     const Node4Input = document.querySelector('#Node4')
+    const Node5Input = document.querySelector('#Node5')
+    const Node6Input = document.querySelector('#Node6')
+    const Node7Input = document.querySelector('#Node7')
+    const Node8Input = document.querySelector('#Node8')
     
     var workerNodeInput = [ document.querySelector('#workerNode1').value, 
                             document.querySelector('#workerNode2').value, 
@@ -192,6 +212,30 @@ const node1Select = document.querySelector('#node1Selection').value
     socket.on('node4Message', function(msg) {
       Node4Input.value += msg + '' + '\n'
       Node4Input.scrollTop = Node4Input.scrollHeight
+      timeStamp.innerHTML = ` elapsed time :  ${(Date.now()-startTime)/1000} seconds`
+
+    })
+    socket.on('node5Message', function(msg) {
+      Node5Input.value += msg + '' + '\n'
+      Node5Input.scrollTop = Node5Input.scrollHeight
+      timeStamp.innerHTML = ` elapsed time :  ${(Date.now()-startTime)/1000} seconds`
+
+    })
+    socket.on('node6Message', function(msg) {
+      Node6Input.value += msg + '' + '\n'
+      Node6Input.scrollTop = Node6Input.scrollHeight
+      timeStamp.innerHTML = ` elapsed time :  ${(Date.now()-startTime)/1000} seconds`
+
+    })
+    socket.on('node7Message', function(msg) {
+      Node7Input.value += msg + '' + '\n'
+      Node7Input.scrollTop = Node7Input.scrollHeight
+      timeStamp.innerHTML = ` elapsed time :  ${(Date.now()-startTime)/1000} seconds`
+
+    })
+    socket.on('node8Message', function(msg) {
+      Node8Input.value += msg + '' + '\n'
+      Node8Input.scrollTop = Node8Input.scrollHeight
       timeStamp.innerHTML = ` elapsed time :  ${(Date.now()-startTime)/1000} seconds`
 
     })

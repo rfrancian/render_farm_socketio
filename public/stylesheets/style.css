@@ -53,7 +53,7 @@ header {
 .checkboxes {
   display: flex;
   flex-direction: row;
-  padding: 1px 5px;
+
 }
 .intFields {
   display: flex;
@@ -93,7 +93,7 @@ header {
 }
 
 .btn:hover {
-  background: #444;
+  background: rgb(153, 125, 125);
 }
 
 .bg-dark {
