@@ -60,8 +60,9 @@ io.on('connection', function(socket){
     io.emit('node1Message', 'www.js: worker node input6: ' + msg1[3][5])
     io.emit('node1Message', 'www.js: worker node input7: ' + msg1[3][6])
     io.emit('node1Message', 'www.js: worker node input8: ' + msg1[3][7])
-    io.emit('node2Message', 'my important Samples: ' + msg1[2])
+    io.emit('node2Message', 'my important Samples: ' + msg1[1])
     io.emit('node2Message', 'my important SEED: ' + msg1[4])
+    io.emit('node2Message', 'my important Split: ' + msg1[2])
 
     io.emit('node3Message', 'www.js: complete msg1: ' + msg1)
     io.emit('node4Message', 'www.js: complete msg1: ' + msg1)
