@@ -239,7 +239,7 @@ function renderNode1(ScriptName, Filename, Samples, WorkerNode1, minX, maxX, spl
               io.emit('node1Message', `node 1: finished strip ${stripNumber}  min x= ${minX}, max x= ${maxX}`)
               io.emit('node1Message', 'node 1: exit code ' + code)
               console.log(`child process exited with code ${code}`);
-              if (stripNumber < split ) { nextNode1(ScriptName, Filename, Samples, WorkerNode1, split) }
+              if (stripNumber < split ) { nextNode1(ScriptName, Filename, Samples, WorkerNode1, split, seed) }
               io.emit('node1Message', `elapsed time: ${(Date.now()-startTime)/1000} seconds`)
 
           });
@@ -254,7 +254,7 @@ function renderNode1(ScriptName, Filename, Samples, WorkerNode1, minX, maxX, spl
 
     function nextNode2(ScriptName, Filename, Samples, WorkerNode2, split, seed) {
 
-      console.log('nextNode2: ',ScriptName, Filename, Samples, WorkerNode2, split, seed);
+      console.log('nextNode2: ', ScriptName, Filename, Samples, WorkerNode2, split, seed);
       
       var minX = stripNumber*1/split;
       var maxX = stripNumber*1/split + 1/split;
@@ -285,7 +285,7 @@ function renderNode1(ScriptName, Filename, Samples, WorkerNode1, minX, maxX, spl
               console.log(`child process exited with code ${code}`);
               console.log(stripNumber);
               console.log(split);
-              if (stripNumber < split ) { nextNode2(ScriptName, Filename, Samples, WorkerNode2, split) }
+              if (stripNumber < split ) { nextNode2(ScriptName, Filename, Samples, WorkerNode2, split, seed) }
               io.emit('node2Message', `elapsed time: ${(Date.now()-startTime)/1000} seconds`)
 
 
