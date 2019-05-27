@@ -142,7 +142,7 @@ function onListening() {
 
 function renderNode1(ScriptName, Filename, Samples, WorkerNode1, minX, maxX, split, seed) {
 
-  console.log('here: ',ScriptName, Filename, Samples, WorkerNode1, seed);
+  console.log('renderNode1: ', ScriptName, Filename, Samples, WorkerNode1, seed);
 
   minX = minX.toFixed(2)
   maxX = maxX.toFixed(2)
@@ -178,7 +178,7 @@ function renderNode1(ScriptName, Filename, Samples, WorkerNode1, minX, maxX, spl
 
   function renderNode2(ScriptName, Filename, Samples, WorkerNode2, minX, maxX, split, seed) {
 
-    console.log('here: ',ScriptName, Filename, Samples, WorkerNode2);
+    console.log('renderNode2: ', ScriptName, Filename, Samples, WorkerNode2, seed);
     
     minX = minX.toFixed(2)
     maxX = maxX.toFixed(2)
