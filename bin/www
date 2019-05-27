@@ -211,7 +211,7 @@ function renderNode1(ScriptName, Filename, Samples, WorkerNode1, minX, maxX, spl
 
     function nextNode1(ScriptName, Filename, Samples, WorkerNode1, split, seed) {
 
-      console.log('here: ',ScriptName, Filename, Samples, WorkerNode1, seed);
+      console.log('nextNode1: ',ScriptName, Filename, Samples, WorkerNode1, seed);
 
       var minX = stripNumber*1/split;
       var maxX = stripNumber*1/split + 1/split;
@@ -254,7 +254,7 @@ function renderNode1(ScriptName, Filename, Samples, WorkerNode1, minX, maxX, spl
 
     function nextNode2(ScriptName, Filename, Samples, WorkerNode2, split, seed) {
 
-      console.log('here: ',ScriptName, Filename, Samples, WorkerNode2, split, seed);
+      console.log('nextNode2: ',ScriptName, Filename, Samples, WorkerNode2, split, seed);
       
       var minX = stripNumber*1/split;
       var maxX = stripNumber*1/split + 1/split;
