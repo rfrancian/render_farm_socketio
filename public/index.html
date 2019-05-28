@@ -245,17 +245,23 @@
                             document.querySelector('#workerNode8').value, 
                             document.querySelector('#workerNode9').value, 
                             document.querySelector('#workerNode10').value]
-                       
-const node1Select = document.querySelector('#node1Selection')             
-const node2Select = document.querySelector('#node2Selection')
-const node3Select = document.querySelector('#node3Selection')
-const node4Select = document.querySelector('#node4Selection')
-const node5Select = document.querySelector('#node5Selection')
-const node6Select = document.querySelector('#node6Selection')
-const node7Select = document.querySelector('#node7Selection')
-const node8Select = document.querySelector('#node8Selection')
-const node9Select = document.querySelector('#node9Selection')
-const node10Select = document.querySelector('#node10Selection')
+  
+      var selectedNodes = [                     
+                            `${document.querySelector('#node1Selection').checked.innerHTML}`,        
+                            `${document.querySelector('#node2Selection').checked.innerHTML}`,
+                            `${document.querySelector('#node3Selection').checked.innerHTML}`, 
+                            `${document.querySelector('#node4Selection').checked.innerHTML}`,
+                            `${document.querySelector('#node5Selection').checked.innerHTML}`,
+                            `${document.querySelector('#node6Selection').checked.innerHTML}`,
+                            `${document.querySelector('#node7Selection').checked.innerHTML}`,
+                            `${document.querySelector('#node8Selection').checked.innerHTML}`,
+                            `${document.querySelector('#node9Selection').checked.innerHTML}`,
+                            `${document.querySelector('#node10Selection').checked.innerHTML}`]
+
+
+    
+
+
 
     myForm.addEventListener('submit', onSubmit)
 
@@ -267,16 +273,17 @@ const node10Select = document.querySelector('#node10Selection')
       socket.emit('split', splitInput.value)
       msg.innerHTML = ` file name: ${filenameInput.value} `
 
-      utilitymessage1.innerHTML =`${node1Select.checked}`
-      utilitymessage2.innerHTML =`${node2Select.checked}`
-      utilitymessage3.innerHTML =`${node3Select.checked}`
-      utilitymessage4.innerHTML =`${node4Select.checked}`
-      utilitymessage5.innerHTML =`${node5Select.checked}`
-      utilitymessage6.innerHTML =`${node6Select.checked}`
-      utilitymessage7.innerHTML =`${node7Select.checked}`
-      utilitymessage8.innerHTML =`${node8Select.checked}`
-      utilitymessage9.innerHTML =`${node9Select.checked}`
-      utilitymessage10.innerHTML =`${node10Select.checked}`
+
+      utilitymessage1.innerHTML = document.querySelector('#node1Selection').checked;
+      utilitymessage2.innerHTML = document.querySelector('#node2Selection').checked
+      utilitymessage3.innerHTML = document.querySelector('#node3Selection').checked
+      utilitymessage4.innerHTML = document.querySelector('#node4Selection').checked
+      utilitymessage5.innerHTML = document.querySelector('#node5Selection').checked
+      utilitymessage6.innerHTML = document.querySelector('#node6Selection').checked
+      utilitymessage7.innerHTML = document.querySelector('#node7Selection').checked
+      utilitymessage8.innerHTML = document.querySelector('#node8Selection').checked
+      utilitymessage9.innerHTML = document.querySelector('#node9Selection').checked
+      utilitymessage10.innerHTML = document.querySelector('#node10Selection').checked
       return false;
     }
 
