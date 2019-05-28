@@ -63,7 +63,7 @@ header {
 .checkboxes {
   display: flex;
   flex-direction: row;
-
+  align-items: center;
 }
 .intFields {
   display: flex;
