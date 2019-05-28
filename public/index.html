@@ -129,7 +129,14 @@
       </div>
 
       <div class="utilityMessages">
-          <div class="utilitymessage"></div>    
+          <div class="utilitymessage1"></div>    
+          <div class="utilitymessage2"></div>    
+          <div class="utilitymessage3"></div>    
+          <div class="utilitymessage4"></div>    
+          <div class="utilitymessage5"></div>    
+          <div class="utilitymessage6"></div>    
+          <div class="utilitymessage7"></div>    
+          <div class="utilitymessage8"></div>    
       </div>
   
       <div>
@@ -196,7 +203,16 @@
     const filenameInput = document.querySelector('#filename')
     const seedInput = document.querySelector('#seed')
     const msg = document.querySelector('.msg')
-    const utilitymessage = document.querySelector('.utilitymessage')
+
+    const utilitymessage1 = document.querySelector('.utilitymessage1')
+    const utilitymessage2 = document.querySelector('.utilitymessage2')
+    const utilitymessage3 = document.querySelector('.utilitymessage3')
+    const utilitymessage4 = document.querySelector('.utilitymessage4')
+    const utilitymessage5 = document.querySelector('.utilitymessage5')
+    const utilitymessage6 = document.querySelector('.utilitymessage6')
+    const utilitymessage7 = document.querySelector('.utilitymessage7')
+    const utilitymessage8 = document.querySelector('.utilitymessage8')
+
     const timeStamp = document.querySelector('.timeStamp')
 
     const samplesInput = document.querySelector('#samples')
@@ -227,7 +243,15 @@
                             document.querySelector('#workerNode10').value]
                        
 const node1Select = document.querySelector('#node1Selection').value                 
-const node2Select = document.querySelector('#node2Selection').value                 
+const node2Select = document.querySelector('#node2Selection').value
+const node3Select = document.querySelector('#node3Selection').value
+const node4Select = document.querySelector('#node4Selection').value
+const node5Select = document.querySelector('#node5Selection').value
+const node6Select = document.querySelector('#node6Selection').value
+const node7Select = document.querySelector('#node7Selection').value
+const node8Select = document.querySelector('#node8Selection').value
+const node9Select = document.querySelector('#node9Selection').value
+const node10Select = document.querySelector('#node10Selection').value
 
     myForm.addEventListener('submit', onSubmit)
 
@@ -238,7 +262,14 @@ const node2Select = document.querySelector('#node2Selection').value
       socket.emit('samples', samplesInput.value)
       socket.emit('split', splitInput.value)
       msg.innerHTML = ` file name: ${filenameInput.value} `
-      utilitymessage.innerHTML =` node1Select: ${node1Select}  node2Select: ${node2Select}`
+
+      utilitymessage1.innerHTML =`${node1Select}`
+      utilitymessage2.innerHTML =`${node2Select}`
+      utilitymessage3.innerHTML =`${node3Select}`
+      utilitymessage4.innerHTML =`${node4Select}`
+      utilitymessage5.innerHTML =`${node5Select}`
+      utilitymessage6.innerHTML =`${node6Select}`
+      utilitymessage7.innerHTML =`${node7Select}`
       return false;
     }
 
