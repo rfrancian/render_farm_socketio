@@ -246,21 +246,21 @@
                             document.querySelector('#workerNode9').value, 
                             document.querySelector('#workerNode10').value]
   
-      var selectedNodes = [                     
-                            `${document.querySelector('#node1Selection').checked.innerHTML}`,        
-                            `${document.querySelector('#node2Selection').checked.innerHTML}`,
-                            `${document.querySelector('#node3Selection').checked.innerHTML}`, 
-                            `${document.querySelector('#node4Selection').checked.innerHTML}`,
-                            `${document.querySelector('#node5Selection').checked.innerHTML}`,
-                            `${document.querySelector('#node6Selection').checked.innerHTML}`,
-                            `${document.querySelector('#node7Selection').checked.innerHTML}`,
-                            `${document.querySelector('#node8Selection').checked.innerHTML}`,
-                            `${document.querySelector('#node9Selection').checked.innerHTML}`,
-                            `${document.querySelector('#node10Selection').checked.innerHTML}`]
+      const selectedNodes = [                     
+                            document.querySelector('#node1Selection').checked,        
+                            document.querySelector('#node2Selection').checked,
+                            document.querySelector('#node3Selection').checked, 
+                            document.querySelector('#node4Selection').checked,
+                            document.querySelector('#node5Selection').checked,
+                            document.querySelector('#node6Selection').checked,
+                            document.querySelector('#node7Selection').checked,
+                            document.querySelector('#node8Selection').checked,
+                            document.querySelector('#node9Selection').checked,
+                            document.querySelector('#node10Selection').checked]
 
 
-    
-
+  
+    const selections = selectedNodes[0]
 
 
     myForm.addEventListener('submit', onSubmit)
@@ -268,13 +268,26 @@
     function onSubmit(e) {
       e.preventDefault()
       startTime = Date.now()
-      socket.emit('filename', [filenameInput.value, samplesInput.value, splitInput.value, workerNodeInput, seedInput.value])
+
+      const selectedNodes = [                     
+                            document.querySelector('#node1Selection').checked,        
+                            document.querySelector('#node2Selection').checked,
+                            document.querySelector('#node3Selection').checked, 
+                            document.querySelector('#node4Selection').checked,
+                            document.querySelector('#node5Selection').checked,
+                            document.querySelector('#node6Selection').checked,
+                            document.querySelector('#node7Selection').checked,
+                            document.querySelector('#node8Selection').checked,
+                            document.querySelector('#node9Selection').checked,
+                            document.querySelector('#node10Selection').checked]
+
+
+      socket.emit('filename', [filenameInput.value, samplesInput.value, splitInput.value, workerNodeInput, seedInput.value, selectedNodes])
       socket.emit('samples', samplesInput.value)
       socket.emit('split', splitInput.value)
       msg.innerHTML = ` file name: ${filenameInput.value} `
-
-
-      utilitymessage1.innerHTML = document.querySelector('#node1Selection').checked;
+      
+      utilitymessage1.innerHTML = document.querySelector('#node1Selection').checked
       utilitymessage2.innerHTML = document.querySelector('#node2Selection').checked
       utilitymessage3.innerHTML = document.querySelector('#node3Selection').checked
       utilitymessage4.innerHTML = document.querySelector('#node4Selection').checked

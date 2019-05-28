@@ -74,6 +74,8 @@ io.on('connection', function(socket){
     // io.emit('node8Message', 'www.js: complete msg1: ' + msg1)
 
     io.emit('node3Message', 'www.js: : ' + msg1[3][2])
+    io.emit('node3Message', 'www.js: :  '+ msg1[5])
+
     io.emit('node4Message', 'www.js: : ' + msg1[3][3])
     io.emit('node5Message', 'www.js: : ' + msg1[3][4])
     io.emit('node6Message', 'www.js: : ' + msg1[3][5])
