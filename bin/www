@@ -225,6 +225,40 @@ function renderNode1(ScriptName, Filename, Samples, WorkerNode1, minX, maxX, spl
     }
     
 
+    function renderNode3(ScriptName, Filename, Samples, WorkerNode3, minX, maxX, split, seed) {
+
+      console.log('renderNode3: ', ScriptName, Filename, Samples, WorkerNode3, seed);
+      
+      minX = minX.toFixed(2)
+      maxX = maxX.toFixed(2)
+  
+      const childProcessNode3 = spawn(ScriptName, [Filename, Samples, WorkerNode3, minX, maxX, seed]);
+      
+          childProcessNode3.stdout.on('data', (data) => {
+              io.emit('node3Message', 'node 3: ' + data)
+              // console.log(`stdout: ${data}`);
+          });
+      
+      
+          childProcessNode3.stderr.on('data', (data) => {
+              io.emit('node3Message', 'node 3: ' + data)
+              console.log(`stderr: ${data}`);
+          });
+        
+      
+          childProcessNode3.on('close', (code) => {
+              io.emit('node3Message', `node 3: finished strip ${stripNumber}    min x= ${minX},  max x= ${maxX}`)
+              io.emit('node3Message', 'node 3: exit code ' + code)
+              console.log(`child process exited with code ${code}`);
+              nextNode3(ScriptName, Filename, Samples, WorkerNode3, split, seed)
+          });
+      
+        
+        console.log('### renderNode3 DONE');
+      }
+      
+
+
     function nextNode1(ScriptName, Filename, Samples, WorkerNode1, split, seed) {
 
       console.log('nextNode1: ',ScriptName, Filename, Samples, WorkerNode1, seed);
@@ -313,6 +347,49 @@ function renderNode1(ScriptName, Filename, Samples, WorkerNode1, minX, maxX, spl
       
 
 
+      function nextNode3(ScriptName, Filename, Samples, WorkerNode3, split, seed) {
+
+        console.log('nextNode3: ', ScriptName, Filename, Samples, WorkerNode3, split, seed);
+        
+        var minX = stripNumber*1/split;
+        var maxX = stripNumber*1/split + 1/split;
+        stripNumber += 1
+  
+        minX = minX.toFixed(2)
+        maxX = maxX.toFixed(2)
+  
+        const childProcessNode3 = spawn(ScriptName, [Filename, Samples, WorkerNode3, minX, maxX, seed]);
+  
+        
+        
+            childProcessNode3.stdout.on('data', (data) => {
+                io.emit('node3Message', 'node 3: ' + data)
+                // console.log(`stdout: ${data}`);
+            });
+        
+        
+            childProcessNode3.stderr.on('data', (data) => {
+                io.emit('node3Message', 'node 3: ' + data)
+                console.log(`stderr: ${data}`);
+            });
+          
+        
+            childProcessNode3.on('close', (code) => {
+                io.emit('node3Message', `node 3: finished strip ${stripNumber}    min x= ${minX},  max x= ${maxX}`)
+                io.emit('node3Message', 'node 3: exit code ' + code)
+                console.log(`child process exited with code ${code}`);
+                console.log(stripNumber);
+                console.log(split);
+                if (stripNumber < split ) { nextNode3(ScriptName, Filename, Samples, WorkerNode3, split, seed) }
+                io.emit('node3Message', `elapsed time: ${(Date.now()-startTime)/1000} seconds`)
+  
+  
+            });
+        
+          
+          console.log('### nextNode3 DONE');
+        }
+        
 
 
     async function imageRender(filename, samples, split, workerNode, seed, selectedNodes) {
@@ -337,13 +414,6 @@ function renderNode1(ScriptName, Filename, Samples, WorkerNode1, minX, maxX, spl
       console.log(stripNumber);
       console.log(split);
 
-      // const minX_Node1 = stripNumber*1/split;
-      // const maxX_Node1 = stripNumber*1/split + 1/split;
-      // stripNumber += 1;
-      // const minX_Node2 = stripNumber*1/split;
-      // const maxX_Node2 = stripNumber*1/split + 1/split;
-      // stripNumber += 1;
-      
       // test logs
       console.log(stripNumber);
       console.log(split);
@@ -352,7 +422,7 @@ function renderNode1(ScriptName, Filename, Samples, WorkerNode1, minX, maxX, spl
       console.log(filename);
       console.log(samples);
       
-      // render left and right sides of image
+      // render image
       if(selectedNodes[0]) {
         const minX = stripNumber*1/split;
         const maxX = stripNumber*1/split + 1/split;
@@ -364,6 +434,12 @@ function renderNode1(ScriptName, Filename, Samples, WorkerNode1, minX, maxX, spl
         const maxX = stripNumber*1/split + 1/split;
         stripNumber += 1; 
         renderNode2(scriptnameNode2, filename, samples, workerNode2, minX, maxX, split, seed);
+      }
+      if(selectedNodes[2]) { 
+        const minX = stripNumber*1/split;
+        const maxX = stripNumber*1/split + 1/split;
+        stripNumber += 1; 
+        renderNode3(scriptnameNode3, filename, samples, workerNode3, minX, maxX, split, seed);
       }
   }
   
