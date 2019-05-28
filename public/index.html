@@ -227,6 +227,7 @@
                             document.querySelector('#workerNode10').value]
                        
 const node1Select = document.querySelector('#node1Selection').value                 
+const node2Select = document.querySelector('#node2Selection').value                 
 
     myForm.addEventListener('submit', onSubmit)
 
@@ -237,7 +238,7 @@ const node1Select = document.querySelector('#node1Selection').value
       socket.emit('samples', samplesInput.value)
       socket.emit('split', splitInput.value)
       msg.innerHTML = ` file name: ${filenameInput.value} `
-      utilitymessage.innerHTML =` node1Select: ${node1Select}`
+      utilitymessage.innerHTML =` node1Select: ${node1Select}  node2Select: ${node2Select}`
       return false;
     }
 
