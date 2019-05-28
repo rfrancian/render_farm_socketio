@@ -231,7 +231,7 @@ const node1Select = document.querySelector('#node1Selection').value
       socket.emit('filename', [filenameInput.value, samplesInput.value, splitInput.value, workerNodeInput, seedInput.value])
       socket.emit('samples', samplesInput.value)
       socket.emit('split', splitInput.value)
-      msg.innerHTML = ` file name: ${filenameInput.value}  `
+      msg.innerHTML = ` file name: ${filenameInput.value}  node1Select: ${node1Select}`
       return false;
     }
 
