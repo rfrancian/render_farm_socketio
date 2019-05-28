@@ -128,6 +128,10 @@
         <div class="timeStamp"></div>
       </div>
 
+      <div class="utilityMessages">
+          <div class="utilitymessage"></div>    
+      </div>
+  
       <div>
           <label for="Node1"> Node 1: </label>
           <textarea id="Node1" rows='8' cols= '150'></textarea>
@@ -192,6 +196,7 @@
     const filenameInput = document.querySelector('#filename')
     const seedInput = document.querySelector('#seed')
     const msg = document.querySelector('.msg')
+    const utilitymessage = document.querySelector('.utilitymessage')
     const timeStamp = document.querySelector('.timeStamp')
 
     const samplesInput = document.querySelector('#samples')
@@ -221,7 +226,7 @@
                             document.querySelector('#workerNode9').value, 
                             document.querySelector('#workerNode10').value]
                        
-const node1Select = document.querySelector('#node1Selection').value                            
+const node1Select = document.querySelector('#node1Selection').value                 
 
     myForm.addEventListener('submit', onSubmit)
 
@@ -231,7 +236,8 @@ const node1Select = document.querySelector('#node1Selection').value
       socket.emit('filename', [filenameInput.value, samplesInput.value, splitInput.value, workerNodeInput, seedInput.value])
       socket.emit('samples', samplesInput.value)
       socket.emit('split', splitInput.value)
-      msg.innerHTML = ` file name: ${filenameInput.value}  node1Select: ${node1Select}`
+      msg.innerHTML = ` file name: ${filenameInput.value} `
+      utilitymessage.innerHTML =` node1Select: ${node1Select}`
       return false;
     }
 

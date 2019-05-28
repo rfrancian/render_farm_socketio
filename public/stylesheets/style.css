@@ -54,6 +54,12 @@ header {
   flex-direction: row;
   justify-content: space-between;
 }
+.utilityMessages {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
 .checkboxes {
   display: flex;
   flex-direction: row;
