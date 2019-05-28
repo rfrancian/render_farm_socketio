@@ -43,6 +43,11 @@ header {
   padding: 1rem 1rem;
 }
 
+.headline {
+  letter-spacing: .2rem;
+  padding: 5px 10px 5px;
+}
+
 .nodeFields {
   display: flex;
   flex-direction: row;
