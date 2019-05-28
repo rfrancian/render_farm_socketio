@@ -86,7 +86,7 @@ io.on('connection', function(socket){
 
     console.log('my io.on complete msg1: ' + msg1)
     console.log('my io.on complete msg1: input filename, samples, split, [workerNode], seed')
-    imageRender(msg1[0], msg1[1], msg1[2], msg1, msg1[4]);
+    imageRender(msg1[0], msg1[1], msg1[2], msg1, msg1[4], msg1[5]);
   });
 
 });
@@ -315,7 +315,7 @@ function renderNode1(ScriptName, Filename, Samples, WorkerNode1, minX, maxX, spl
 
 
 
-    async function imageRender(filename, samples, split, workerNode, seed) {
+    async function imageRender(filename, samples, split, workerNode, seed, selectedNodes) {
 
   
       const scriptnameNode1 = '/Volumes/blenderFiles/blenderScript_Node1'
@@ -353,8 +353,11 @@ function renderNode1(ScriptName, Filename, Samples, WorkerNode1, minX, maxX, spl
       console.log(samples);
       
       // render left and right sides of image
-      renderNode1(scriptnameNode1, filename, samples, workerNode1, minX_Node1, maxX_Node1, split, seed);      
+      if(selectedNodes[0]){
+        renderNode1(scriptnameNode1, filename, samples, workerNode1, minX_Node1, maxX_Node1, split, seed);    
+      }
+      if(selectedNodes[1]) { 
       renderNode2(scriptnameNode2, filename, samples, workerNode2, minX_Node2, maxX_Node2, split, seed);
-     
+      }
   }
   
